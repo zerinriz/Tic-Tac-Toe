@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import "./App.css";
 import Login from "./components/Login";
-import Game from "./components/Game";
+import Navbar from "./components/Navbar";
 
 function App() {
-  const [playerOne, setplayerOne] = useState("O");
-  const [playerTwo, setplayerTwo] = useState("X");
+  const [playerOne, setplayerOne] = useState("");
+  const [playerTwo, setplayerTwo] = useState("");
+
+  const startGame = () => {
+    if (playerOne === "") {
+      alert("Must enter name!");
+    } else {
+      setplayerOne(playerOne);
+    }
+  };
 
   return (
     <div className="App">
@@ -15,8 +23,9 @@ function App() {
         setplayerOne={setplayerOne}
         playerTwo={playerTwo}
         setplayerTwo={setplayerTwo}
+        startGame={startGame}
       />
-      <Game />
+      <Navbar playerOne={playerOne} playerTwo={playerTwo} />
     </div>
   );
 }

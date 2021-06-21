@@ -1,8 +1,9 @@
-function Square() {
+import React from "react";
+
+export default function Square(props) {
   return (
-    <button className="btn" onClick={() => addField(caption)}>
-      {caption}
+    <button className="btn" onClick={props.onClick}>
+      {props.value}
     </button>
   );
 }
-export default Square;

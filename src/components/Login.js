@@ -1,24 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function Login({
-  playerOne,
-  setplayerOne,
-  playerTwo,
-  setplayerTwo,
-  startGame,
-}) {
+function Login({ playerOne, setplayerOne, playerTwo, setplayerTwo }) {
   const history = useHistory();
 
   const startGameLogin = () => {
-    history.push("/game");
-    startGame();
+    if (playerOne === null) {
+      history.push("/game");
+    } else alert("Must enter Both names");
   };
-  const setPlayerName = (e) => {
+  const setPlayerNameOne = e => {
     setplayerOne(e.target.value);
-    setplayerTwo(e.target.value);
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -31,14 +25,10 @@ function Login({
         <input
           type="text"
           value={playerOne}
-          onChange={() => setPlayerName}
+          onChange={setPlayerNameOne}
         ></input>
         <h3>Player 2</h3>
-        <input
-          type="text"
-          value={playerTwo}
-          onChange={() => setPlayerName}
-        ></input>
+        <input type="text" value={playerTwo}></input>
         <br />
         <button onClick={startGameLogin}>Start</button>
       </form>
