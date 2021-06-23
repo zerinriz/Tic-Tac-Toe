@@ -1,38 +1,46 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
-function Login({ playerOne, setplayerOne, playerTwo, setplayerTwo }) {
-  const history = useHistory();
-
-  const startGameLogin = () => {
-    if (playerOne === null) {
-      history.push("/game");
-    } else alert("Must enter Both names");
-  };
-  const setPlayerNameOne = e => {
+function Login({
+  playerOne,
+  playerTwo,
+  setplayerOne,
+  setplayerTwo,
+  setGameStart,
+}) {
+  const setPlayers1 = (e) => {
     setplayerOne(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const setPlayers2 = (e) => {
+    setplayerTwo(e.target.value);
   };
 
+  const setGameStartBtn = () => {
+    setGameStart(false);
+  };
+  const SubmitTodoHandler = (e) => {
+    e.preventDefault();
+  };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="Login"></div>
-        <h3>Player 1</h3>
-        <input
-          type="text"
-          value={playerOne}
-          onChange={setPlayerNameOne}
-        ></input>
-        <h3>Player 2</h3>
-        <input type="text" value={playerTwo}></input>
-        <br />
-        <button onClick={startGameLogin}>Start</button>
-      </form>
-    </div>
+    <form onSubmit={SubmitTodoHandler}>
+      <div className="Login"></div>
+      <h3>Player 1</h3>
+      <input
+        type="text"
+        value={playerOne}
+        onChange={setPlayers1}
+        required
+      ></input>
+      <h3>Player 2</h3>
+      <input
+        type="text"
+        value={playerTwo}
+        onChange={setPlayers2}
+        required
+      ></input>
+      <br />
+      <button onClick={(props) => setGameStartBtn(props)}>Start</button>
+    </form>
   );
 }
 export default Login;

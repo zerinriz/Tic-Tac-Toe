@@ -1,7 +1,7 @@
 function Endgame({ playerOne, playerTwo }) {
   return (
     <form>
-      <h1>{playerOne} Won!</h1>
+      <h1>{playerOne} {playerTwo} Won!</h1>
     </form>
   );
 }
