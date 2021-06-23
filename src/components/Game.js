@@ -1,69 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
+import Square from "./Square";
 import Board from "./Board";
-import Navbar from "./Navbar";
-import Endgame from "./Endgame";
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null),
-        },
-      ],
-      xIsNext: true,
-    };
-  }
-  handleClick(i) {
-    const history = this.state.history;
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({
-      history: history.concat([
-        {
-          squares: squares,
-        },
-      ]),
-      xIsNext: !this.state.xIsNext,
-    });
-  }
+function Game({ setGameEnd }) {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [isXNext, setIsXNext] = useState(true);
 
-  render() {
-    const history = this.state.history;
-    const current = history[history.length - 1];
-    const winner = calculateWinner(current.squares);
+  const nextSymbol = isXNext ? "X" : "O";
+  const winner = calculateWinner(squares);
 
-    let status;
+  const setGameStartBtn = (props) => {
+    setGameEnd(true);
+  };
+
+  function getStatus() {
     if (winner) {
-      return <Endgame />;
+      setGameStartBtn(true);
+    } else if (isBoardFull(squares)) {
+      return "Draw!";
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      return "Next player: " + nextSymbol;
     }
+  }
 
+  function renderSquare(i) {
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <Navbar playerOne={this.setState.playerOne} />
-          <div>{status}</div>
-        </div>
-      </div>
+      <Square
+        value={squares[i]}
+        onClick={() => {
+          if (squares[i] != null || winner != null) {
+            return;
+          }
+          const nextSquares = squares.slice();
+          nextSquares[i] = nextSymbol;
+          setSquares(nextSquares);
+
+          setIsXNext(!isXNext);
+        }}
+      />
     );
   }
+
+  function renderRestartButton() {
+    return (
+      <Board
+        onClick={() => {
+          setSquares(Array(9).fill(null));
+          setIsXNext(true);
+        }}
+      />
+    );
+  }
+
+  return (
+    <div className="container">
+      <div className="game">
+        <div className="game-board">
+          <div className="board-row">
+            {renderSquare(0)}
+            {renderSquare(1)}
+            {renderSquare(2)}
+          </div>
+          <div className="board-row">
+            {renderSquare(3)}
+            {renderSquare(4)}
+            {renderSquare(5)}
+          </div>
+          <div className="board-row">
+            {renderSquare(6)}
+            {renderSquare(7)}
+            {renderSquare(8)}
+          </div>
+        </div>
+        <div className="game-info">{getStatus()}</div>
+        <div className="restart-button">{renderRestartButton()}</div>
+      </div>
+    </div>
+  );
 }
 
 function calculateWinner(squares) {
-  const lines = [
+  const possibleLines = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -74,14 +91,21 @@ function calculateWinner(squares) {
     [2, 4, 6],
   ];
 
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
+  for (let i = 0; i < possibleLines.length; i++) {
+    const [a, b, c] = possibleLines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
-
   return null;
 }
 
+function isBoardFull(squares) {
+  for (let i = 0; i < squares.length; i++) {
+    if (squares[i] == null) {
+      return false;
+    }
+  }
+  return true;
+}
 export default Game;
