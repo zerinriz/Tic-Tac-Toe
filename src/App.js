@@ -4,19 +4,26 @@ import Login from "./components/Login";
 import Game from "./components/Game";
 import Navbar from "./components/Navbar";
 import Endgame from "./components/Endgame";
+import WinnerList from "./components/WinnerList";
 
 function App() {
   const [playerOne, setplayerOne] = useState("");
   const [playerTwo, setplayerTwo] = useState("");
   const [gameStart, setGameStart] = useState(true);
   const [gameEnd, setGameEnd] = useState(false);
+  const [winner, setWinner] = useState("");
+  const [draw, setDraw] = useState(false);
+  const [countOne, setCountOne] = useState(0);
+  const [countTwo, setCountTwo] = useState(0);
+  const [drawCount, setDrawCount] = useState(0);
+  const [winnerList, setWinnerList] = useState([]);
 
+  const handleEndGame = (value) => setGameEnd(value);
 
-
-  
   if (gameStart === true) {
     return (
       <div>
+        <h2 className="neonText">Tic Tac Toe</h2>
         <Login
           setGameStart={setGameStart}
           playerOne={playerOne}
@@ -26,21 +33,55 @@ function App() {
         />
       </div>
     );
-  } else if (gameStart === false) {
-    return (
-      <div>
-        <Game
-          playerOne={playerOne}
-          playerTwo={playerTwo}
-          setGameEnd={setGameEnd}
-        />
-        <Navbar />
-      </div>
-    );
   } else if (gameEnd === true) {
     return (
       <div>
-        <Endgame playerOne={playerOne} playerTwo={playerTwo} />
+        <Endgame
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          setGameEnd={setGameEnd}
+          winner={winner}
+          draw={draw}
+          setDraw={setDraw}
+          winnerList={winnerList}
+        />
+        <WinnerList
+          winnerList={winnerList}
+          setWinnerList={setWinnerList}
+          winner={winner}
+          gameEnd={gameEnd}
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+        />
+      </div>
+    );
+  } else if (gameStart === false || gameEnd === true) {
+    return (
+      <div>
+        <h2 className="neonText">Tic Tac Toe</h2>
+        <Game
+          setGameStart={setGameStart}
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          handleEndGame={handleEndGame}
+          setWinner={setWinner}
+          setDraw={setDraw}
+          setCountOne={setCountOne}
+          setCountTwo={setCountTwo}
+          countOne={countOne}
+          countTwo={countTwo}
+          setWinnerList={setWinnerList}
+          winnerList={winnerList}
+          drawCount={drawCount}
+          setDrawCount={setDrawCount}
+        />
+        <Navbar
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          countOne={countOne}
+          countTwo={countTwo}
+          drawCount={drawCount}
+        />
       </div>
     );
   }

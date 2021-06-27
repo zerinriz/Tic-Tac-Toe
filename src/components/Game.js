@@ -2,24 +2,44 @@ import React, { useState } from "react";
 import Square from "./Square";
 import Board from "./Board";
 
-function Game({ setGameEnd }) {
+function Game({
+  handleEndGame,
+  setWinner,
+  playerOne,
+  playerTwo,
+  setDraw,
+  setCountOne,
+  setCountTwo,
+  countOne,
+  countTwo,
+  drawCount,
+  setDrawCount,
+}) {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
-
   const nextSymbol = isXNext ? "X" : "O";
+  const nextPlayer = isXNext ? playerOne : playerTwo;
   const winner = calculateWinner(squares);
 
-  const setGameStartBtn = (props) => {
-    setGameEnd(true);
-  };
-
   function getStatus() {
-    if (winner) {
-      setGameStartBtn(true);
+    if (winner === "X") {
+      setWinner(playerOne);
+      setCountOne(countOne + 1);
+      return handleEndGame(true);
+    } else if (winner === "O") {
+      setWinner(playerTwo);
+      setCountTwo(countTwo + 1);
+      return handleEndGame(true);
     } else if (isBoardFull(squares)) {
-      return "Draw!";
+      setDrawCount(drawCount + 1);
+      setDraw(true);
+      return handleEndGame(true);
     } else {
-      return "Next player: " + nextSymbol;
+      return (
+        <h4 className="neonText">
+          {nextPlayer} it is your turn now, you are {nextSymbol}
+        </h4>
+      );
     }
   }
 
@@ -34,7 +54,6 @@ function Game({ setGameEnd }) {
           const nextSquares = squares.slice();
           nextSquares[i] = nextSymbol;
           setSquares(nextSquares);
-
           setIsXNext(!isXNext);
         }}
       />
@@ -56,21 +75,15 @@ function Game({ setGameEnd }) {
     <div className="container">
       <div className="game">
         <div className="game-board">
-          <div className="board-row">
-            {renderSquare(0)}
-            {renderSquare(1)}
-            {renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {renderSquare(3)}
-            {renderSquare(4)}
-            {renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {renderSquare(6)}
-            {renderSquare(7)}
-            {renderSquare(8)}
-          </div>
+          {renderSquare(0)}
+          {renderSquare(1)}
+          {renderSquare(2)}
+          {renderSquare(3)}
+          {renderSquare(4)}
+          {renderSquare(5)}
+          {renderSquare(6)}
+          {renderSquare(7)}
+          {renderSquare(8)}
         </div>
         <div className="game-info">{getStatus()}</div>
         <div className="restart-button">{renderRestartButton()}</div>

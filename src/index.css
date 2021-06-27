@@ -1,20 +1,176 @@
+.neonText {
+  color: #fff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #ff4fdb, 0 0 42px #dd00fd,
+    0 0 82px #c100fe, 0 0 92px #a120f2, 0 0 102px #8001dd, 0 0 151px #6300bd;
+}
+
+/* Additional styling */
+
 body {
-  height: 100%;
+  font-size: 18px;
+  font-family: "Balsamiq Sans", cursive;
+  background-color: #010a01;
   text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h1,
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: "Balsamiq Sans", cursive;
 }
 
-.btn {
-  background-color: green; /* Green */
-  border: none;
-  color: white;
-  padding: 30px 30px;
-  text-align: center;
-  display: inline-block;
-  font-size: 15px;
-  margin: 1px;
+h1 {
+  font-size: 4.2rem;
+  font-family: "Balsamiq Sans", cursive;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.container {
+  margin-top: 10pt;
+}
+
+.neons {
+  font-size: 25px;
+  height: 40px;
+  width: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Balsamiq Sans", cursive;
+  text-decoration: none;
+  color: #ff4fdb;
+  border: #ff4fdb 3px solid;
+  background-color: transparent;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 #6300bd, 0 0 0.5em 0 #6300bd;
+  transition: all 0.5s;
+  margin-top: 10px;
+  position: relative;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+}
+
+.neons:hover {
+  background-color: #ff4fdb;
+  color: #fff;
+}
+
+.neonInput {
+  font-size: 25px;
+  height: 30px;
+  width: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Balsamiq Sans", cursive;
+  text-decoration: none;
+  color: #ff4fdb;
+  border: #ff4fdb 3px solid;
+  background-color: transparent;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 #6300bd, 0 0 0.5em 0 #6300bd;
+  transition: all 0.5s;
+  margin-top: 10px;
+  position: relative;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.neonInput:hover {
+  background-color: #ff4fdb;
+  color: #fff;
+}
+
+.neonRestart {
+  font-size: 25px;
+  height: 40px;
+  width: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Balsamiq Sans", cursive;
+  text-decoration: none;
+  color: #ff4fdb;
+  border: #ff4fdb 3px solid;
+  background-color: transparent;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 #6300bd, 0 0 0.5em 0 #6300bd;
+  transition: all 0.5s;
+  margin-top: 10px;
+  position: relative;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+}
+.neonRestart:hover {
+  background-color: #ff4fdb;
+  color: #fff;
+}
+
+.neonSquare {
+  font-size: 20px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-family: "Balsamiq Sans", cursive;
+  text-decoration: none;
+  color: #ff4fdb;
+  border: #ff4fdb 3px solid;
+  background-color: transparent;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 #6300bd, 0 0 0.5em 0 #6300bd;
+  transition: all 0.5s;
+  padding: 0;
+  margin: 0%;
+}
+.neonSquare:hover {
+  background-color: #ff4fdb;
+  color: #fff;
+}
+.game-board {
+  display: grid;
+  width: 170px;
+  height: 170px;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.neonWin {
+  font-size: 10px;
+  height: 45px;
+  width: 60px;
+  display: table-caption;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Balsamiq Sans", cursive;
+  text-decoration: none;
+  color: #ff4fdb;
+  border: #ff4fdb 3px solid;
+  background-color: transparent;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 #6300bd, 0 0 0.5em 0 #6300bd;
+  transition: all 0.5s;
+  margin: 5px;
+  position: relative;
+  top: 35%;
+  transform: translate(-5%, -5%);
 }

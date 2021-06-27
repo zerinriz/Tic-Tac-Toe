@@ -15,31 +15,32 @@ function Login({
     setplayerTwo(e.target.value);
   };
 
-  const setGameStartBtn = () => {
+  const setGameStartBtn = (e) => {
+    e.preventDefault();
     setGameStart(false);
   };
-  const SubmitTodoHandler = (e) => {
-    e.preventDefault();
-  };
+
   return (
-    <form onSubmit={SubmitTodoHandler}>
+    <form onSubmit={setGameStartBtn}>
       <div className="Login"></div>
-      <h3>Player 1</h3>
+      <h3 className="neonText">Player X</h3>
       <input
+       className="neonInput"
         type="text"
         value={playerOne}
         onChange={setPlayers1}
         required
       ></input>
-      <h3>Player 2</h3>
+      <h3 className="neonText">Player O</h3>
       <input
+      className="neonInput"
         type="text"
         value={playerTwo}
         onChange={setPlayers2}
         required
       ></input>
       <br />
-      <button onClick={(props) => setGameStartBtn(props)}>Start</button>
+      <button className="neons">Start</button>
     </form>
   );
 }

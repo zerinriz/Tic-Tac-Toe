@@ -1,6 +1,6 @@
 function Board({ onClick }) {
   return (
-    <button className="restart" onClick={onClick}>
+    <button className="neonRestart" onClick={onClick}>
       Play again
     </button>
   );

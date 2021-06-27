@@ -1,12 +1,12 @@
 import React from "react";
 
-function Navbar({ playerOne, playerTwo }) {
+function Navbar({ playerOne, playerTwo, countOne, countTwo, drawCount }) {
   return (
     <div className="Navbar">
-      <h4>Player 1</h4>
-      <h2>
-        Tic Tac Toe {playerOne} {playerTwo}
-      </h2>
+      <h3 className="neonText">
+        Tic Tac Toe        {playerOne}:{countOne} {playerTwo}:{countTwo} Draw:
+        {drawCount}
+      </h3>
     </div>
   );
 }
