@@ -16,8 +16,7 @@ function App() {
   const [countOne, setCountOne] = useState(0);
   const [countTwo, setCountTwo] = useState(0);
   const [drawCount, setDrawCount] = useState(0);
-  const [winnerList, setWinnerList] = useState([]);
-
+  const [game, setGame] = useState([]);
   const handleEndGame = (value) => setGameEnd(value);
 
   if (gameStart === true) {
@@ -43,15 +42,13 @@ function App() {
           winner={winner}
           draw={draw}
           setDraw={setDraw}
-          winnerList={winnerList}
         />
         <WinnerList
-          winnerList={winnerList}
-          setWinnerList={setWinnerList}
           winner={winner}
           gameEnd={gameEnd}
           playerOne={playerOne}
           playerTwo={playerTwo}
+          game={game}
         />
       </div>
     );
@@ -70,10 +67,10 @@ function App() {
           setCountTwo={setCountTwo}
           countOne={countOne}
           countTwo={countTwo}
-          setWinnerList={setWinnerList}
-          winnerList={winnerList}
           drawCount={drawCount}
           setDrawCount={setDrawCount}
+          game={game}
+          setGame={setGame}
         />
         <Navbar
           playerOne={playerOne}

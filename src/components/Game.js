@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Square from "./Square";
 import Board from "./Board";
 
@@ -14,25 +14,29 @@ function Game({
   countTwo,
   drawCount,
   setDrawCount,
+  game,
+  setGame,
 }) {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
   const nextSymbol = isXNext ? "X" : "O";
   const nextPlayer = isXNext ? playerOne : playerTwo;
   const winner = calculateWinner(squares);
-
   function getStatus() {
     if (winner === "X") {
       setWinner(playerOne);
       setCountOne(countOne + 1);
+      setGame([...game, gameData]);
       return handleEndGame(true);
     } else if (winner === "O") {
       setWinner(playerTwo);
       setCountTwo(countTwo + 1);
+      setGame([...game, gameData]);
       return handleEndGame(true);
     } else if (isBoardFull(squares)) {
       setDrawCount(drawCount + 1);
       setDraw(true);
+      setGame([...game, gameData]);
       return handleEndGame(true);
     } else {
       return (
@@ -42,6 +46,29 @@ function Game({
       );
     }
   }
+
+  var today = new Date(),
+    timeShow =
+      today.getDate() +
+      "." +
+      today.getMonth() +
+      " " +
+      today.getHours() +
+      ":" +
+      today.getMinutes() +
+      ":" +
+      today.getSeconds();
+
+  const gameData = {
+    time: timeShow,
+    nameOne: playerOne,
+    nameTwo: playerTwo,
+    result: winner,
+  };
+
+  useEffect(() => {
+    localStorage.setItem("winners", JSON.stringify(game));
+  }, [game]);
 
   function renderSquare(i) {
     return (

@@ -5,7 +5,6 @@ function Endgame({
   playerOne,
   playerTwo,
   setGameEnd,
-  winnerList,
 }) {
   const setGameStartBtn = () => {
     setGameEnd(false);
@@ -25,7 +24,6 @@ function Endgame({
         <h3 className="neonText">
           {playerOne} vs {playerTwo}
         </h3>
-        <h1 className="neonText">{winnerList}</h1>
         <button className="neons" onClick={setGameStartBtn}>Start</button>
       </div>
     );
