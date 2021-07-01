@@ -71,6 +71,7 @@ function App() {
           setDrawCount={setDrawCount}
           game={game}
           setGame={setGame}
+          draw={draw}
         />
         <Navbar
           playerOne={playerOne}

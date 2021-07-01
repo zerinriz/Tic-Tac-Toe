@@ -36,7 +36,7 @@ function Game({
     } else if (isBoardFull(squares)) {
       setDrawCount(drawCount + 1);
       setDraw(true);
-      setGame([...game, gameData]);
+      setGame([...game, gameDataDraw]);
       return handleEndGame(true);
     } else {
       return (
@@ -59,15 +59,21 @@ function Game({
       ":" +
       today.getSeconds();
 
+  const gameDataDraw = {
+    time: timeShow,
+    nameOne: playerOne,
+    nameTwo: playerTwo,
+    result: "Draw!",
+  };
   const gameData = {
     time: timeShow,
     nameOne: playerOne,
     nameTwo: playerTwo,
-    result: winner,
+    result: winner + " Won",
   };
 
   useEffect(() => {
-    localStorage.setItem("winners", JSON.stringify(game));
+    localStorage.setItem("gamehistory", JSON.stringify(game));
   }, [game]);
 
   function renderSquare(i) {
